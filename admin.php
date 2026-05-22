@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 session_start();
 
-require_once dirname(__DIR__) . '/app/orders.php';
+require_once __DIR__ . '/app/orders.php';
 
 $config = app_config();
 $dbReady = db_available();

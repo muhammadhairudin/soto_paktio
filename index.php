@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-require_once dirname(__DIR__) . '/app/orders.php';
+require_once __DIR__ . '/app/orders.php';
 
 $dbReady = db_available();
 $success = null;

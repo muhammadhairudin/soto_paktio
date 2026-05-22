@@ -33,22 +33,33 @@ ADMIN_USERNAME=admin
 ADMIN_PASSWORD=ganti-password-kuat
 ```
 
-## 3. Upload File
+## 3. Deploy dari GitHub
 
-Struktur paling aman:
+Di hPanel:
+
+1. Buka `Websites`.
+2. Pilih website `tan-whale-691825.hostingersite.com`.
+3. Masuk ke `Dashboard`.
+4. Pilih `Advanced` → `Git`.
+5. Connect GitHub.
+6. Pilih repository `muhammadhairudin/soto_paktio`.
+7. Branch: `main`.
+8. Root directory/deployment path: `public_html`.
+9. Klik `Deploy`.
+
+Setelah deploy, struktur di `public_html` akan berisi:
 
 ```text
-home/
+public_html/
+  index.php
+  admin.php
+  .htaccess
+  assets/
   app/
-  .env
-  public_html/
-    index.php
-    admin.php
-    assets/
-    .htaccess
+  database/
 ```
 
-Jika memakai struktur aman di atas, sesuaikan `require_once` di `public_html/index.php` dan `public_html/admin.php` hanya jika posisi folder berubah dari struktur project ini.
+File `.htaccess` sudah memblokir akses browser ke `app/`, `database/`, dan `.env`.
 
 ## 4. Tes Setelah Upload
 
@@ -65,4 +76,4 @@ Jika memakai struktur aman di atas, sesuaikan `require_once` di `public_html/ind
 - Ganti `ADMIN_PASSWORD`.
 - Jangan commit file `.env`.
 - Jangan upload folder `.git`.
-- Pastikan directory listing mati. File `public/.htaccess` sudah menonaktifkan listing.
+- Pastikan directory listing mati. File `.htaccess` sudah menonaktifkan listing.

@@ -39,13 +39,11 @@ Contoh via phpMyAdmin Hostinger:
 
 ## Deploy Hostinger Shared Hosting
 
-Upload isi folder berikut:
+Gunakan hPanel → Websites → Dashboard → Advanced → Git untuk deploy repo ini ke `public_html`.
 
-- `public/*` ke `public_html/`.
-- `app/` ke satu level di atas `public_html/` jika memungkinkan.
-- `.env` ke satu level di atas `public_html/` jika memungkinkan.
+Project ini sudah dibuat agar `index.php`, `admin.php`, `.htaccess`, dan `assets/` berada di root repo, sehingga cocok ketika isi repo langsung masuk ke `public_html`.
 
-Jika Hostinger hanya mengizinkan upload ke `public_html`, upload semua folder ke `public_html` dan pastikan `.env` tidak bisa dibuka publik. Cara yang lebih aman adalah menaruh `app/` dan `.env` di luar `public_html`.
+Setelah Git deploy, buat file `.env` melalui File Manager di folder yang sama dengan `index.php`. Jangan commit file `.env`.
 
 ## Admin
 
