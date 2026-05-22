@@ -57,8 +57,8 @@ foreach (menu_items() as $item) {
     <main>
         <section class="hero">
             <div class="hero-copy">
-                <h1>Soto hangat Pak Tio, siap makan di tempat atau bungkus.</h1>
-                <p>Pesan Soto Semarang, Soto Kwali, gorengan, sate, dan minuman langsung dari halaman ini. Total belanja dihitung otomatis.</p>
+                <h1>Pesan Soto Hangat Hari Ini</h1>
+                <p>Soto Semarang dan Soto Kwali Pak Tio disiapkan pagi hari, bisa makan di tempat atau bungkus. Pilih menu, cek total, lalu kirim pesanan dalam satu halaman.</p>
                 <div class="hero-actions">
                     <a class="button primary" href="#pesan">Mulai Pesan</a>
                     <a class="button ghost" href="https://wa.me/6282156317654" target="_blank" rel="noopener">WhatsApp</a>
@@ -70,14 +70,21 @@ foreach (menu_items() as $item) {
                 </dl>
             </div>
             <div class="hero-poster">
-                <img src="assets/spanduk-didalam.png" alt="Daftar menu Soto Pak Tio">
+                <div class="poster-frame">
+                    <img src="assets/spanduk-didalam.png" alt="Daftar menu Soto Pak Tio">
+                </div>
+                <div class="poster-caption">
+                    <strong>Soto Semarang & Soto Kwali</strong>
+                    <span>Menu sederhana, rasa yang kami jaga setiap hari.</span>
+                </div>
             </div>
         </section>
 
         <section id="pesan" class="order-section">
             <div class="section-heading">
+                <span>Order Online</span>
                 <h2>Form Pemesanan</h2>
-                <p>Pilih jumlah menu, isi nama dan nomor HP, lalu kirim pesanan.</p>
+                <p>Pilih jumlah menu, isi nama dan nomor HP, lalu kirim pesanan. Laporan admin akan terisi otomatis setelah database aktif.</p>
             </div>
 
             <?php if ($success): ?>
@@ -97,21 +104,26 @@ foreach (menu_items() as $item) {
                             <h3><?= htmlspecialchars($category) ?></h3>
                             <div class="menu-list">
                                 <?php foreach ($items as $item): ?>
-                                    <label class="menu-row">
-                                        <span>
+                                    <div class="menu-row">
+                                        <label for="item-<?= htmlspecialchars($item['id']) ?>">
                                             <strong><?= htmlspecialchars($item['name']) ?></strong>
                                             <small><?= rupiah($item['price']) ?></small>
-                                        </span>
-                                        <input
-                                            type="number"
-                                            name="items[<?= htmlspecialchars($item['id']) ?>]"
-                                            min="0"
-                                            max="99"
-                                            value="0"
-                                            data-price="<?= (int) $item['price'] ?>"
-                                            data-name="<?= htmlspecialchars($item['name']) ?>"
-                                        >
-                                    </label>
+                                        </label>
+                                        <div class="quantity-control">
+                                            <button type="button" data-step="-1" aria-label="Kurangi <?= htmlspecialchars($item['name']) ?>">-</button>
+                                            <input
+                                                id="item-<?= htmlspecialchars($item['id']) ?>"
+                                                type="number"
+                                                name="items[<?= htmlspecialchars($item['id']) ?>]"
+                                                min="0"
+                                                max="99"
+                                                value="0"
+                                                data-price="<?= (int) $item['price'] ?>"
+                                                data-name="<?= htmlspecialchars($item['name']) ?>"
+                                            >
+                                            <button type="button" data-step="1" aria-label="Tambah <?= htmlspecialchars($item['name']) ?>">+</button>
+                                        </div>
+                                    </div>
                                 <?php endforeach; ?>
                             </div>
                         </section>
@@ -135,10 +147,12 @@ foreach (menu_items() as $item) {
                         <textarea name="notes" rows="3" placeholder="Contoh: tanpa sambal, ambil jam 09.00"></textarea>
                     </label>
                     <div class="total-box">
-                        <span>Total</span>
+                        <span>Total Pesanan</span>
                         <strong id="cartTotal">Rp 0</strong>
                     </div>
-                    <ul class="cart-preview" id="cartPreview"></ul>
+                    <ul class="cart-preview" id="cartPreview">
+                        <li class="empty-cart">Belum ada menu dipilih.</li>
+                    </ul>
                     <button class="button primary full" type="submit">Kirim Pesanan</button>
                 </aside>
             </form>
